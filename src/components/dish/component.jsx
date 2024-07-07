@@ -1,33 +1,14 @@
-import { useState } from  "react"
+import { Counter } from "../counter/component";
 import '/src/css/Dish.css'
 
-const useCount = () => {
-    const [count, setCount] = useState(0);
-
-    const increment = () => {
-        setCount((prevState) => prevState + 1 > 5 ? 5 : prevState + 1 );
-    }
-    const decrement = () => {
-        setCount((prevState) => prevState > 0 ? prevState - 1 : 0);
-    }
-
-    return {
-        count,
-        increment,
-        decrement
-    };
-};
-
-
 export const Dish = ({id, name, price, ingridients}) => {
-    const {count, increment, decrement} = useCount();
 
     return (
         <div id={id} className="dishContainer">
-            {name} - price per piece: {price}; total price: {count * price}
+            {name} - price per piece: {price};
             <br/>
             <p>{ingridients.join(', ')}</p>
-            <button onClick={decrement}>-</button>{count}<button onClick={increment}>+</button>
+            <Counter />
         </div>
     );
 };

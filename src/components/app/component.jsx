@@ -1,34 +1,38 @@
 import { restaurants} from "../../../materials/mock";
 import { Restaurant } from "../restaurant/component";
 import { Layout } from "../layout/component";
+import { ScrollBar } from "../scrollBar/component";
 import { useState } from "react";
 import "/src/css/Tabs.css"
+import "/src/css/App.css"
 
 export const App = () => {
     const [currRestaurantIndx, setCurrRestaurantIndx] = useState(0);
     function changeActiveTab(event)
     {
-        setCurrRestaurantIndx(event.target.value);
+        setCurrRestaurantIndx(Number(event.target.value));
     }
 
     return (
         <Layout>
+            <ScrollBar />
             <div className="tab">
-                {restaurants.map((restaurant) => (
-                    <button className={restaurants.indexOf(restaurant) == currRestaurantIndx ? "tabBtn active" : "tabBtn"} 
+                {restaurants.map((restaurant, indx) => (
+                    <button className={indx === currRestaurantIndx ? "tabBtn active" : "tabBtn"} 
                             onClick={changeActiveTab} 
-                            value={restaurants.indexOf(restaurant)} 
-                            disabled={!Boolean(restaurant.menu?.length)}>
+                            value={indx} 
+                            key={restaurant.id}
+                            disabled={!restaurant.menu?.length}>
                         {restaurant.name}
                     </button>
                 ))}
             </div>
             <div>
                 {
-                    <Restaurant id={restaurants[currRestaurantIndx].id} 
-                                name={restaurants[currRestaurantIndx].name} 
-                                menu={restaurants[currRestaurantIndx].menu} 
-                                reviews={restaurants[currRestaurantIndx].reviews}/>
+                    Array(5).fill(<Restaurant id={restaurants[currRestaurantIndx].id} 
+                        name={restaurants[currRestaurantIndx].name} 
+                        menu={restaurants[currRestaurantIndx].menu} 
+                        reviews={restaurants[currRestaurantIndx].reviews}/>)
                 }
             </div>
         </Layout>
