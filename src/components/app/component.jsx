@@ -8,17 +8,18 @@ export const App = () => {
     const [currRestaurantIndx, setCurrRestaurantIndx] = useState(0);
     function changeActiveTab(event)
     {
-        setCurrRestaurantIndx(event.target.value);
+        setCurrRestaurantIndx(Number(event.target.value));
     }
 
     return (
         <Layout>
             <div className="tab">
-                {restaurants.map((restaurant) => (
-                    <button className={restaurants.indexOf(restaurant) == currRestaurantIndx ? "tabBtn active" : "tabBtn"} 
+                {restaurants.map((restaurant, indx) => (
+                    <button className={indx === currRestaurantIndx ? "tabBtn active" : "tabBtn"} 
                             onClick={changeActiveTab} 
-                            value={restaurants.indexOf(restaurant)} 
-                            disabled={!Boolean(restaurant.menu?.length)}>
+                            value={indx} 
+                            key={restaurant.id}
+                            disabled={!restaurant.menu?.length}>
                         {restaurant.name}
                     </button>
                 ))}
