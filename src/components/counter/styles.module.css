@@ -1,0 +1,33 @@
+.counterBtn {
+    background-color: transparent;
+    border-color: #434340;
+    color: #434340;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid;
+    width: 26px;
+    height: 26px;
+}
+
+.counterBtn:hover {
+    background-color: #434340;
+    color: white;
+    transition: color .5s ease, background-color .5s ease, border-color .5s ease;
+}
+
+.counterContainer {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.counterValueContainer {
+    display: inline-block;
+    color: #434340;
+    margin-left: 5px;
+    margin-right: 5px;
+    font-family: Alegreya;
+    font-size: 20px;
+    vertical-align: middle;
+    text-align: center;
+}

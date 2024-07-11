@@ -1,0 +1,32 @@
+.restContainer {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    margin-left: 2%;
+}
+
+.restH4 {
+    color: #333333;
+    text-transform: uppercase;
+    font-family: Alegreya;
+    font-weight: 1000;
+    font-style: normal;
+    font-size: 30px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.restLine {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    height: 5px;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    display: block;
+    background-color: #ffffff;
+    border-color: #e4e4e4;
+    width: 50%;
+    margin-top: 6px;
+}

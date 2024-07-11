@@ -1,0 +1,41 @@
+.dishContainer {
+    background-color: #ebe9eb;
+    width: 40%;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.dishTitle {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    display: block;
+}
+
+.dishName {
+    font-family: Alegreya;
+    font-weight: 700;
+    font-style: normal;
+    text-transform: uppercase;
+    font-size: 23px;
+    line-height: 26px;
+    width: 80%;
+    display: inline-block;
+    color: #333333;
+}
+
+.dishPrice {
+    display: inline-block;
+    color: #333333;
+    font-family: Alegreya;
+}
+
+.dishIngridients {
+    font-family: "Cabin Condensed";
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 28px;
+    letter-spacing: 0.7px;
+    color: #777777;
+    margin: 0;
+}

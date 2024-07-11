@@ -1,0 +1,20 @@
+.header {
+    color: white;
+    padding: 1% ;
+    padding-left: 2%;
+}
+
+.headerImageDefault {
+    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.9), rgba(200, 200, 200, 0.5)), url('https://cdn.myslo.ru/Content/CityImage/cc/af/ccaf6932-02bd-4baf-b742-06901f38c278_3.jpg');
+}
+.headerImageAlternate {
+    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.9), rgba(200, 200, 200, 0.5)), url('https://img.razrisyika.ru/kart/76/1200/303580-edu-11.jpg');
+}
+
+.headerH1 {
+    margin: 10px 0px;
+}
+
+.headerP {
+    margin: 0px;
+}
