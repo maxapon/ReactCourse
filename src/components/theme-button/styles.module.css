@@ -1,0 +1,31 @@
+.themeBtn {
+    margin: 8px 0 0 0;
+    padding: 4px;
+    border: 1px solid;
+    border-radius: 0px;
+    font-family: "Cabin Condensed";
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.themeBtnLight {
+    background-color: white;
+    color: #333333;
+}
+
+.themeBtnDark {
+    background-color: #333333;
+    color: white;
+}
+
+.themeBtnDark:hover {
+    background-color: white;
+    color: #333333;
+    transition: color .5s ease, background-color .5s ease, border-color .5s ease;
+}
+
+.themeBtnLight:hover {
+    background-color: #333333;
+    color: white;
+    transition: color .5s ease, background-color .5s ease, border-color .5s ease;
+}

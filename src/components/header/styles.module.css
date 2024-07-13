@@ -18,3 +18,12 @@
 .headerP {
     margin: 0px;
 }
+
+.headerDiv {
+    display: inline-block;
+    text-align: left;
+}
+
+.headerDivProfile {
+    width: 85%;
+}

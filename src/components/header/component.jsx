@@ -1,5 +1,7 @@
 import classnames from "classnames";
 import styles from "./styles.module.css";
+import { ThemeButton } from "../theme-button/component";
+import { Profile } from "../profile/component";
 
 export const Header = ({ imageVariant }) => {
   return (
@@ -9,8 +11,14 @@ export const Header = ({ imageVariant }) => {
         [styles.headerImageAlternate]: imageVariant === "Other",
       })}
     >
-      <h1 className={styles.headerH1}>Restaurants:</h1>
-      <p className={styles.headerP}>Header description</p>
+      <div className={styles.headerDiv}>
+        <h1 className={styles.headerH1}>Restaurants:</h1>
+        <p className={styles.headerP}>Header description</p>
+        <ThemeButton />
+      </div>
+      <div className={classnames(styles.headerDiv, styles.headerDivProfile)}>
+        <Profile />
+      </div>
     </header>
   );
 };

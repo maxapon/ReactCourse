@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import styles from "./styles.module.css";
 
 export const TabBar = ({ restaurants, currRestaurantIndx, clickCallback }) => {
@@ -5,9 +6,10 @@ export const TabBar = ({ restaurants, currRestaurantIndx, clickCallback }) => {
     <div className={styles.tab}>
       {restaurants.map((restaurant, indx) => (
         <button
-          className={`${styles.tabBtn} ${
+          className={classNames(
+            styles.tabBtn,
             indx === currRestaurantIndx && styles.tabBtnActive
-          } `}
+          )}
           onClick={clickCallback}
           value={indx}
           key={restaurant.id}

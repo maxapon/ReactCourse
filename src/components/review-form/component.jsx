@@ -1,5 +1,9 @@
 import { useReducer } from "react";
 import { Counter } from "../counter/component";
+import { UseTheme, ThemeTypes } from "../theme-context/component";
+import { UseUser } from "../user-context/component";
+import styles from "./styles.module.css";
+import classNames from "classnames";
 
 const INITIAL_FORM = {
   name: "",
@@ -35,28 +39,34 @@ const useForm = (initState) => {
 
 export const ReviewForm = () => {
   const [form, dispatch] = useForm(INITIAL_FORM);
+  const { theme } = UseTheme();
+  const { isUserInSystem } = UseUser();
+  if (!isUserInSystem()) return;
+
   return (
-    <div>
-      <div>
-        <span>Name:</span>
+    <div className={styles.reviewContainer}>
+      <div className={styles.reviewBtnContentContainer}>
+        <span className={styles.reviewSpan}>Name:</span>
         <input
+          className={styles.reviewTextInput}
           value={form.name}
           onChange={(event) => {
             dispatch({ type: "setName", payload: event.target.value });
           }}
         />
       </div>
-      <div>
-        <span>Text:</span>
+      <div className={styles.reviewBtnContentContainer}>
+        <span className={styles.reviewSpan}>Text:</span>
         <input
+          className={styles.reviewTextInput}
           value={form.text}
           onChange={(event) => {
             dispatch({ type: "setText", payload: event.target.value });
           }}
         />
       </div>
-      <div>
-        <span>Rating:</span>
+      <div className={styles.reviewBtnContentContainer}>
+        <span className={styles.reviewSpan}>Rating us:</span>
         <Counter
           value={form.rating}
           increment={() => {
@@ -67,13 +77,19 @@ export const ReviewForm = () => {
           }}
         />
       </div>
-      <button
-        onClick={() => {
-          dispatch({ type: "clear" });
-        }}
-      >
-        Save
-      </button>
+      <div>
+        <button
+          className={classNames(styles.reviewBtn, {
+            [styles.reviewBtnLight]: theme === ThemeTypes.LIGHT,
+            [styles.reviewBtnDark]: theme === ThemeTypes.DARK,
+          })}
+          onClick={() => {
+            dispatch({ type: "clear" });
+          }}
+        >
+          Save
+        </button>
+      </div>
     </div>
   );
 };
