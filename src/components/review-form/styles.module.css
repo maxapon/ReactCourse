@@ -1,0 +1,49 @@
+.reviewBtn {
+    width: 50px;
+    height: 30px;
+}
+
+.reviewBtnLight {
+    background-color: white;
+    color: #434340;
+}
+
+.reviewBtnLight:hover {
+    background-color: #434340;
+    color: white;
+    transition: color .5s ease, background-color .5s ease, border-color .5s ease;
+}
+
+.reviewBtnDark {
+    background-color: #434340;
+    color: white;
+}
+
+.reviewBtnDark:hover {
+    color: #434340;
+    background-color: transparent;
+    transition: color .5s ease, background-color .5s ease, border-color .5s ease;
+}
+
+.reviewContainer {
+    padding: 5px;
+    text-align: left;
+    width: 600px;
+    background-color: #ebe9eb;
+}
+
+.reviewBtnContentContainer {
+    padding: 3px;
+}
+
+.reviewTextInput {
+    border: 1px solid;
+    border-radius: 0px;
+    height: 20px;
+    width: 150px;
+}
+
+.reviewSpan {
+    float: left;
+    width: 80px;
+}

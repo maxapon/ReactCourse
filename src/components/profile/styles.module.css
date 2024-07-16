@@ -1,0 +1,66 @@
+.profileImg {
+    width: 30px;
+    height: 30px;
+}
+
+.profileInlineDiv {
+    display: inline-block;
+    height: 100%;
+    padding: 5px;
+}
+
+.profileText {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-family: "Cabin Condensed";
+    font-size: 18px;
+    font-weight: 400;
+    display: block;
+    height: 16px;
+    color: black;
+}
+
+.profileBtn {
+    margin: 8px 0 0 0;
+    padding: 4px;
+    border: 1px solid;
+    border-radius: 0px;
+    font-family: "Cabin Condensed";
+    font-size: 14px;
+    font-weight: 400;
+    width: 40px;
+    height: 30px;
+}
+
+.profileBtnLight {
+    background-color: white;
+    color: #333333;
+}
+
+.profileBtnLight:hover {
+    background-color: #333333;
+    color: white;
+    transition: color .5s ease, background-color .5s ease, border-color .5s ease;
+}
+
+.profileBtnDark {
+    background-color: #333333;
+    color: white;
+}
+
+.profileBtnDark:hover {
+    background-color: white;
+    color: #333333;
+    transition: color .5s ease, background-color .5s ease, border-color .5s ease;
+}
+
+.profileContainer {
+    background-color: #ebe9eb;
+    width: 100px;
+    height: 60px;
+    float: right;
+    padding: 5px;
+    text-align: left;
+    
+}
