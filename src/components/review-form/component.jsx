@@ -42,7 +42,6 @@ export const ReviewForm = () => {
   const { theme } = UseTheme();
   const { user } = UseUser();
   if (!user.isAutorize) {
-    console.log("here");
     return;
   }
 
