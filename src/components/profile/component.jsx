@@ -12,28 +12,30 @@ const defaultUserImg = {
 
 export const Profile = () => {
   const { theme } = UseTheme();
-  const { userName, userEnter, userExit, isUserInSystem } = UseUser();
+  const { user, userEnter, userExit } = UseUser();
 
   return (
     <div className={styles.profileContainer}>
       <div className={styles.profileInlineDiv}>
         <img
           className={styles.profileImg}
-          src={isUserInSystem() ? defaultUserImg.IMG2 : defaultUserImg.IMG1}
+          src={user.isAutorize ? defaultUserImg.IMG2 : defaultUserImg.IMG1}
         ></img>
       </div>
       <div className={styles.profileInlineDiv}>
-        <p className={styles.profileText}>{userName}</p>
+        <p className={styles.profileText}>{user.userName}</p>
         <button
           onClick={() => {
-            isUserInSystem() ? userExit() : userEnter(defaultUserName);
+            user.isAutorize
+              ? userExit()
+              : userEnter({ userName: "user", email: "email@mail.ru" });
           }}
           className={classNames(styles.profileBtn, {
             [styles.profileBtnLight]: theme === ThemeTypes.LIGHT,
             [styles.profileBtnDark]: theme === ThemeTypes.DARK,
           })}
         >
-          {isUserInSystem() ? "Exit" : "Enter"}
+          {user.isAutorize ? "Exit" : "Enter"}
         </button>
       </div>
     </div>

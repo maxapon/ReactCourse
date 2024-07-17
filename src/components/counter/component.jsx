@@ -4,9 +4,9 @@ import styles from "./styles.module.css";
 import classNames from "classnames";
 
 export const Counter = ({ value, increment, decrement }) => {
-  const { isUserInSystem } = UseUser();
+  const { user } = UseUser();
   const { theme } = UseTheme();
-  if (!isUserInSystem()) return;
+  if (!user.isAutorize) return;
 
   return (
     <div className={styles.counterContainer}>

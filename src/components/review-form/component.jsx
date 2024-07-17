@@ -40,8 +40,11 @@ const useForm = (initState) => {
 export const ReviewForm = () => {
   const [form, dispatch] = useForm(INITIAL_FORM);
   const { theme } = UseTheme();
-  const { isUserInSystem } = UseUser();
-  if (!isUserInSystem()) return;
+  const { user } = UseUser();
+  if (!user.isAutorize) {
+    console.log("here");
+    return;
+  }
 
   return (
     <div className={styles.reviewContainer}>
