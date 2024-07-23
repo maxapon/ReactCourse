@@ -1,14 +1,10 @@
-import { useSelector } from "react-redux";
 import { TabBar } from "./component";
-import { selectRestaurants } from "../../redux/entities/restautant";
 
-export const TabBarContainer = ({ currRestaurantId, clickCallback }) => {
-  const restData = useSelector(selectRestaurants);
-  if (!restData) return null;
+export const TabBarContainer = ({ items, currItemId, clickCallback }) => {
   return (
     <TabBar
-      restaurants={restData}
-      currRestaurantId={currRestaurantId}
+      items={items}
+      currItemId={currItemId}
       clickCallback={clickCallback}
     />
   );

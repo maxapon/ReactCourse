@@ -1,7 +1,7 @@
 import { useReducer } from "react";
 import { Counter } from "../counter/component";
-import { UseTheme, ThemeTypes } from "../theme-context/component";
-import { UseUser } from "../user-context/component";
+import { useTheme, ThemeTypes } from "../theme-context/component";
+import { useUser } from "../user-context/component";
 import styles from "./styles.module.css";
 import classNames from "classnames";
 
@@ -39,8 +39,8 @@ const useForm = (initState) => {
 
 export const ReviewForm = () => {
   const [form, dispatch] = useForm(INITIAL_FORM);
-  const { theme } = UseTheme();
-  const { user } = UseUser();
+  const { theme } = useTheme();
+  const { user } = useUser();
   if (!user.isAutorize) {
     return;
   }
@@ -77,6 +77,7 @@ export const ReviewForm = () => {
           decrement={() => {
             dispatch({ type: "decreaseRating" });
           }}
+          theme={theme}
         />
       </div>
       <div>

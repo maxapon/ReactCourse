@@ -1,13 +1,8 @@
-import { UseTheme, ThemeTypes } from "../theme-context/component";
-import { UseUser } from "../user-context/component";
+import { ThemeTypes } from "../theme-context/component";
 import styles from "./styles.module.css";
 import classNames from "classnames";
 
-export const Counter = ({ value, increment, decrement }) => {
-  const { user } = UseUser();
-  const { theme } = UseTheme();
-  if (!user.isAutorize) return;
-
+export const Counter = ({ value, increment, decrement, theme }) => {
   return (
     <div className={styles.counterContainer}>
       <button

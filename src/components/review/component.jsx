@@ -1,9 +1,12 @@
-export const Review = ({id, user, rating, text}) => {
-    return (
-        <div id={id}>
-            {user} - rating: {rating}:
-            <br/>
-            <p>{text}</p>
-        </div>
-    );
+import { ReviewUserContainer } from "../review-user/container";
+
+export const Review = ({ id, userId, rating, text }) => {
+  return (
+    <div id={id}>
+      <ReviewUserContainer userId={userId} />
+      <span> - rating: {rating}:</span>
+      <br />
+      <p>{text}</p>
+    </div>
+  );
 };

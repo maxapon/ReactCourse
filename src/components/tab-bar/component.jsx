@@ -1,20 +1,20 @@
 import classNames from "classnames";
 import styles from "./styles.module.css";
 
-export const TabBar = ({ restaurants, currRestaurantId, clickCallback }) => {
+export const TabBar = ({ items, currItemId, clickCallback }) => {
   return (
     <div className={styles.tab}>
-      {restaurants.map((restaurant, indx) => (
+      {items.map((item) => (
         <button
           className={classNames(
             styles.tabBtn,
-            restaurant.id === currRestaurantId && styles.tabBtnActive
+            item.id === currItemId && styles.tabBtnActive
           )}
           onClick={clickCallback}
-          value={restaurant.id}
-          key={restaurant.id}
+          value={item.id}
+          key={item.id}
         >
-          {restaurant.name}
+          {item.name}
         </button>
       ))}
     </div>

@@ -1,39 +1,20 @@
 import React from "react";
-import { useState, useCallback, useContext, useReducer } from "react";
+import { useCallback, useContext, useReducer } from "react";
 
 const UserContext = React.createContext();
 
-export const UseUser = () => useContext(UserContext);
+export const useUser = () => useContext(UserContext);
 
-/*
-export const UserContextProvider = ({ children }) => {
-  const [userName, setUserName] = useState("");
-
-  const userEnter = useCallback((name) => {
-    setUserName(name);
-  }, []);
-
-  const userExit = useCallback(() => {
-    setUserName("");
-  }, []);
-
-  const isUserInSystem = useCallback(() => {
-    return userName !== "";
-  }, [userName]);
-
-  return (
-    <UserContext.Provider
-      value={{ userName: userName, userEnter, userExit, isUserInSystem }}
-    >
-      {children}
-    </UserContext.Provider>
-  );
-};*/
+const defaultUserImg = {
+  IMG1: "/src/resources/user.png",
+  IMG2: "/src/resources/userEnter.png",
+};
 
 const INITIAL_STATE = {
   userName: undefined,
   email: undefined,
   isAutorize: false,
+  profileImg: defaultUserImg.IMG1,
 };
 
 function reducer(state, { type, payload }) {
@@ -43,6 +24,7 @@ function reducer(state, { type, payload }) {
         userName: payload.userName,
         email: payload.email,
         isAutorize: true,
+        profileImg: defaultUserImg.IMG2,
       };
     case "logout":
       return INITIAL_STATE;

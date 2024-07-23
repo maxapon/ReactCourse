@@ -10,7 +10,7 @@ export const ThemeTypes = {
 
 const ThemeContext = React.createContext(ThemeTypes.LIGHT);
 
-export const UseTheme = () => useContext(ThemeContext);
+export const useTheme = () => useContext(ThemeContext);
 
 export const ThemeContextProvider = ({ children }) => {
   const [theme, setTheme] = useState(ThemeTypes.LIGHT);
