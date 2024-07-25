@@ -1,39 +1,33 @@
 import styles from "./styles.module.css";
 import classNames from "classnames";
-import { UseTheme, ThemeTypes } from "../theme-context/component";
-import { UseUser } from "../user-context/component";
+import { useTheme, ThemeTypes } from "../theme-context/component";
+import { useUser } from "../user-context/component";
 
 const defaultUserName = "user";
 
-const defaultUserImg = {
-  IMG1: "/src/resources/user.png",
-  IMG2: "/src/resources/userEnter.png",
-};
-
 export const Profile = () => {
-  const { theme } = UseTheme();
-  const { userName, userEnter, userExit, isUserInSystem } = UseUser();
+  const { theme } = useTheme();
+  const { user, userEnter, userExit } = useUser();
 
   return (
     <div className={styles.profileContainer}>
       <div className={styles.profileInlineDiv}>
-        <img
-          className={styles.profileImg}
-          src={isUserInSystem() ? defaultUserImg.IMG2 : defaultUserImg.IMG1}
-        ></img>
+        <img className={styles.profileImg} src={user.profileImg}></img>
       </div>
       <div className={styles.profileInlineDiv}>
-        <p className={styles.profileText}>{userName}</p>
+        <p className={styles.profileText}>{user.userName}</p>
         <button
           onClick={() => {
-            isUserInSystem() ? userExit() : userEnter(defaultUserName);
+            user.isAutorize
+              ? userExit()
+              : userEnter({ userName: "user", email: "email@mail.ru" });
           }}
           className={classNames(styles.profileBtn, {
             [styles.profileBtnLight]: theme === ThemeTypes.LIGHT,
             [styles.profileBtnDark]: theme === ThemeTypes.DARK,
           })}
         >
-          {isUserInSystem() ? "Exit" : "Enter"}
+          {user.isAutorize ? "Exit" : "Enter"}
         </button>
       </div>
     </div>

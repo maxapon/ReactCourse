@@ -1,7 +1,7 @@
 import { CounterContainer } from "../counter/container";
 import styles from "./styles.module.css";
 
-export const Dish = ({ id, name, price, ingridients }) => {
+export const Dish = ({ id, name, price, ingridients, isUserAutorize }) => {
   return (
     <div id={id} className={styles.dishContainer}>
       <div className={styles.dishTitle}>
@@ -9,7 +9,7 @@ export const Dish = ({ id, name, price, ingridients }) => {
         <span className={styles.dishPrice}>Per piece: {price}</span>
       </div>
       <p className={styles.dishIngridients}>{ingridients.join(", ")}</p>
-      <CounterContainer />
+      {isUserAutorize && <CounterContainer />}
     </div>
   );
 };
