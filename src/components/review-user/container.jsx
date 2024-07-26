@@ -1,10 +1,7 @@
 import { ReviewUser } from "./component";
-import { useSelector } from "react-redux";
-import { selectUserById } from "../../redux/entities/user/user";
 
-export const ReviewUserContainer = ({ userId }) => {
-  const userData = useSelector((state) => selectUserById(state, userId));
-  if (!userData) return null;
+export const ReviewUserContainer = ({ userName }) => {
+  if (!userName) return null;
 
-  return <ReviewUser userName={userData.name} />;
+  return <ReviewUser userName={userName} />;
 };

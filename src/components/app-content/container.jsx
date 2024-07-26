@@ -1,46 +1,35 @@
 import { useState } from "react";
 import { AppContent } from "./component";
 import {
-  selectRequestStatus,
-  selectRestaurantIds,
-  selectRestaurants,
-} from "../../redux/entities/restaurant/restaurant";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { useEffect } from "react";
-import { getRestaurants } from "../../redux/entities/restaurant/get-restaurants";
-import { getUsers } from "../../redux/entities/user/get-users";
+  useGetRestaurantsQuery,
+  useGetUsersQuery,
+} from "../../redux/services/api";
 
 export const AppContentContainer = () => {
-  //getting data from server
-  const dispatch = useDispatch();
+  const { data, isError, isFetching, isLoading } = useGetRestaurantsQuery();
+  useGetUsersQuery();
 
-  useEffect(() => {
-    dispatch(getRestaurants());
-    dispatch(getUsers());
-  }, [dispatch]);
-  //end
-
-  const reqStatus = useSelector(selectRequestStatus);
-  const restIds = useSelector(selectRestaurantIds);
-  const restData = useSelector(selectRestaurants);
+  var restIds = [];
   const [currRestId, setCurrRestId] = useState(restIds[0]);
-  if (reqStatus === "idle" || reqStatus === "pending")
-    return <h3>Loading data</h3>;
 
-  if (reqStatus === "rejected") return <h3>Error while data is loading</h3>;
+  if (!isError && !isFetching && !isLoading)
+    restIds = data.map((item) => item.id);
 
-  if (reqStatus === "fulfilled" && currRestId === undefined)
-    setCurrRestId(restIds[0]);
+  if (isFetching || isLoading) return <h3>Loading data</h3>;
 
-  if (!restData) return null;
+  if (isError) return <h3>Error while data is loading</h3>;
+
+  if (currRestId === undefined && restIds.length) setCurrRestId(restIds[0]);
+
+  if (!data) return null;
 
   function changeCurrentRestId(event) {
     setCurrRestId(event.target.value);
   }
+
   return (
     <AppContent
-      tabItems={restData}
+      tabItems={data}
       currTabId={currRestId}
       tabClickCallBack={changeCurrentRestId}
     />

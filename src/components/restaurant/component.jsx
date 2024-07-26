@@ -9,11 +9,11 @@ export const Restaurant = ({ id, name, menu, reviews }) => {
       <h3>{name}</h3>
       <h4 className={styles.restH4}>Menu:</h4>
       <div className={styles.restLine}></div>
-      <MenuContainer dishIds={menu} />
+      <MenuContainer menu={menu} />
       <h4 className={styles.restH4}>Reviews:</h4>
       <div className={styles.restLine}></div>
-      <ReviewListContainer reviewIds={reviews} />
-      <ReviewForm />
+      <ReviewListContainer reviews={reviews} />
+      <ReviewForm restaurantId={id} />
     </div>
   );
 };

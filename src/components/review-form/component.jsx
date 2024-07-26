@@ -4,9 +4,9 @@ import { useTheme, ThemeTypes } from "../theme-context/component";
 import { useUser } from "../user-context/component";
 import styles from "./styles.module.css";
 import classNames from "classnames";
+import { useCreateReviewMutation } from "../../redux/services/api";
 
 const INITIAL_FORM = {
-  name: "",
   text: "",
   rating: 5,
 };
@@ -18,8 +18,6 @@ const COUNTER_CONF = {
 
 function reducer(state, { type, payload }) {
   switch (type) {
-    case "setName":
-      return { ...state, name: payload };
     case "setText":
       return { ...state, text: payload };
     case "increaseRating":
@@ -37,26 +35,19 @@ const useForm = (initState) => {
   return useReducer(reducer, initState);
 };
 
-export const ReviewForm = () => {
+export const ReviewForm = ({ restaurantId }) => {
   const [form, dispatch] = useForm(INITIAL_FORM);
   const { theme } = useTheme();
   const { user } = useUser();
+
+  const [createReview, { isLoading }] = useCreateReviewMutation();
+
   if (!user.isAutorize) {
     return;
   }
 
   return (
     <div className={styles.reviewContainer}>
-      <div className={styles.reviewBtnContentContainer}>
-        <span className={styles.reviewSpan}>Name:</span>
-        <input
-          className={styles.reviewTextInput}
-          value={form.name}
-          onChange={(event) => {
-            dispatch({ type: "setName", payload: event.target.value });
-          }}
-        />
-      </div>
       <div className={styles.reviewBtnContentContainer}>
         <span className={styles.reviewSpan}>Text:</span>
         <input
@@ -87,10 +78,13 @@ export const ReviewForm = () => {
             [styles.reviewBtnDark]: theme === ThemeTypes.DARK,
           })}
           onClick={() => {
+            form.userId = user.userId;
+            createReview({ review: form, restaurantId: restaurantId });
             dispatch({ type: "clear" });
           }}
+          disabled={isLoading}
         >
-          Save
+          {isLoading ? "Loading" : "Save"}
         </button>
       </div>
     </div>
