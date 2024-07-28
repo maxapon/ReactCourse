@@ -5,15 +5,17 @@ import {
   useGetUsersQuery,
 } from "../../redux/services/api";
 
+const restIds = [];
+
 export const AppContentContainer = () => {
   const { data, isError, isFetching, isLoading } = useGetRestaurantsQuery();
   useGetUsersQuery();
 
-  var restIds = [];
   const [currRestId, setCurrRestId] = useState(restIds[0]);
 
-  if (!isError && !isFetching && !isLoading)
-    restIds = data.map((item) => item.id);
+  if (restIds.length === 0 && !isError && !isFetching && !isLoading) {
+    restIds.push(...data.map((item) => item.id));
+  }
 
   if (isFetching || isLoading) return <h3>Loading data</h3>;
 
