@@ -5,25 +5,35 @@ import {
   useGetUsersQuery,
 } from "../../redux/services/api";
 
-const restIds = [];
-
 export const AppContentContainer = () => {
-  const { data, isError, isFetching, isLoading } = useGetRestaurantsQuery();
+  const { data, isError, isFetching, isLoading } = useGetRestaurantsQuery(
+    undefined,
+    {
+      selectFromResult: ({ data, isError, isFetching, isLoading }) => ({
+        isError,
+        isFetching,
+        isLoading,
+        data: data?.map((item) => ({
+          id: item.id,
+          name: item.name,
+        })),
+      }),
+    }
+  );
+
   useGetUsersQuery();
 
-  const [currRestId, setCurrRestId] = useState(restIds[0]);
-
-  if (restIds.length === 0 && !isError && !isFetching && !isLoading) {
-    restIds.push(...data.map((item) => item.id));
-  }
+  const [currRestId, setCurrRestId] = useState(undefined);
 
   if (isFetching || isLoading) return <h3>Loading data</h3>;
 
   if (isError) return <h3>Error while data is loading</h3>;
 
-  if (currRestId === undefined && restIds.length) setCurrRestId(restIds[0]);
+  if (currRestId === undefined && data !== undefined) setCurrRestId(data[0].id);
 
   if (!data) return null;
+
+  console.log(data);
 
   function changeCurrentRestId(event) {
     setCurrRestId(event.target.value);
