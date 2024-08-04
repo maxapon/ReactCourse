@@ -33,8 +33,6 @@ export const AppContentContainer = () => {
 
   if (!data) return null;
 
-  console.log(data);
-
   function changeCurrentRestId(event) {
     setCurrRestId(event.target.value);
   }
