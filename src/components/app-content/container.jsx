@@ -9,10 +9,8 @@ export const AppContentContainer = () => {
   const { data, isError, isFetching, isLoading } = useGetRestaurantsQuery(
     undefined,
     {
-      selectFromResult: ({ data, isError, isFetching, isLoading }) => ({
-        isError,
-        isFetching,
-        isLoading,
+      selectFromResult: ({ data, ...rest }) => ({
+        ...rest,
         data: data?.map((item) => ({
           id: item.id,
           name: item.name,
