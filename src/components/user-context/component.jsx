@@ -11,6 +11,7 @@ const defaultUserImg = {
 };
 
 const INITIAL_STATE = {
+  userId: "",
   userName: undefined,
   email: undefined,
   isAutorize: false,
@@ -21,6 +22,7 @@ function reducer(state, { type, payload }) {
   switch (type) {
     case "login":
       return {
+        userId: "a304959a-76c0-4b34-954a-b38dbf310360",
         userName: payload.userName,
         email: payload.email,
         isAutorize: true,

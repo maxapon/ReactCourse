@@ -1,11 +1,11 @@
 import { DishContainer } from "../dish/container";
 
-export const Menu = ({ dishIds }) => {
+export const Menu = ({ menu }) => {
   return (
     <ul>
-      {dishIds.map((id) => (
-        <li key={id}>
-          <DishContainer dishId={id} />
+      {menu.map((dish) => (
+        <li key={dish.id}>
+          <DishContainer dish={dish} />
         </li>
       ))}
     </ul>

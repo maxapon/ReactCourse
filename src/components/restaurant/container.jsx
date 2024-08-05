@@ -1,32 +1,11 @@
-import { useSelector } from "react-redux";
 import { Restaurant } from "./component";
-import { selectRestaurantById } from "../../redux/entities/restaurant/restaurant";
-
-import { useDispatch } from "react-redux";
-import { useEffect } from "react";
-import { GetDishByRestId } from "../../redux/entities/dish/get-dish-by-rest-id";
-import { GetReviewByRestId } from "../../redux/entities/review/get-review-by-rest-id";
+import { useGetRestaurantByIdQuery } from "../../redux/services/api";
 
 export const RestaurantContainer = ({ restId }) => {
-  const restData = useSelector((state) => selectRestaurantById(state, restId));
+  const { data: restData, isSuccess: restIsSuccess } =
+    useGetRestaurantByIdQuery(restId);
 
-  //getting data from server
-  const dispatch = useDispatch();
+  if (!restIsSuccess) return null;
 
-  useEffect(() => {
-    dispatch(GetDishByRestId(restId));
-    dispatch(GetReviewByRestId(restId));
-  }, [dispatch, restId]);
-  //end
-
-  if (!restData || !restData.menu.length) return null;
-
-  return (
-    <Restaurant
-      id={restData.id}
-      name={restData.name}
-      menu={restData.menu}
-      reviews={restData.reviews}
-    />
-  );
+  return <Restaurant id={restData.id} name={restData.name} />;
 };

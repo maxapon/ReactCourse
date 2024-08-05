@@ -1,11 +1,16 @@
 import { ReviewContainer } from "../review/container";
 
-export const ReviewList = ({ reviewIds }) => {
+export const ReviewList = ({ reviews, users }) => {
   return (
     <ul>
-      {reviewIds.map((id) => (
-        <li key={id}>
-          <ReviewContainer reviewId={id} />
+      {reviews.map((item) => (
+        <li key={item.id}>
+          <ReviewContainer
+            review={item}
+            userName={
+              Array.from(users).find((user) => user.id === item.userId).name
+            }
+          />
         </li>
       ))}
     </ul>

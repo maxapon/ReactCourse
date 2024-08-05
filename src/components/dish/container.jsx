@@ -1,14 +1,11 @@
-import { useSelector } from "react-redux";
 import { Dish } from "./component";
-import { selectDishById } from "../../redux/entities/dish/dish";
 import { useUser } from "../user-context/component";
 
-export const DishContainer = ({ dishId }) => {
+export const DishContainer = ({ dish }) => {
   const { user } = useUser();
-  const dishData = useSelector((state) => selectDishById(state, dishId));
-  if (!dishData) return null;
+  if (!dish) return null;
 
-  const { id, name, price, ingredients } = dishData;
+  const { id, name, price, ingredients } = dish;
 
   return (
     <Dish
