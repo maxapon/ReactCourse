@@ -60,7 +60,7 @@ const router = createBrowserRouter([
   },
 ]);
 
-export const App = () => {
+const App = () => {
   return (
     <Provider store={store}>
       <UserContextProvider>
@@ -71,3 +71,5 @@ export const App = () => {
     </Provider>
   );
 };
+
+export default App;
